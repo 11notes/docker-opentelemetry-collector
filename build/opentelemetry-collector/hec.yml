@@ -1,0 +1,23 @@
+dist:
+  name: opentelemetry-collector-hec
+  description: Custom OpenTelemetry Collector with Splunk HEC exporter (for CrowdStrike NG-SIEM)
+  output_path: /go/opentelemetry-collector/.dist
+  otelcol_version: APP_VERSION
+  version: APP_VERSION
+
+receivers:
+  - gomod: go.opentelemetry.io/collector/receiver/otlpreceiver vAPP_VERSION
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/filelogreceiver vAPP_VERSION
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/syslogreceiver vAPP_VERSION
+
+processors:
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor vAPP_VERSION
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor vAPP_VERSION
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor vAPP_VERSION
+
+exporters:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter vAPP_VERSION
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter vAPP_VERSION
+
+extensions:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension vAPP_VERSION

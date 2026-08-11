@@ -1,0 +1,43 @@
+receivers:
+  syslog/udp:
+    udp:
+      listen_address: "0.0.0.0:5140"
+    protocol: rfc5424
+    location: UTC
+
+  syslog/tcp:
+    tcp:
+      listen_address: "0.0.0.0:5140"
+      max_log_size: 1MiB
+    protocol: rfc5424
+    location: UTC
+    enable_octet_counting: true
+
+processors:
+  batch:
+    timeout: 5s
+    send_batch_size: 1000
+
+exporters:
+  splunk_hec:
+    token: "${env:HEC_TOKEN}"
+    endpoint: "${env:HEC_URL}"
+    source: "${env:HOSTNAME}"
+    sourcetype: "syslog"
+    tls:
+      insecure_skip_verify: false
+
+  debug:
+    verbosity: normal
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+
+service:
+  extensions: [health_check]
+  pipelines:
+    logs:
+      receivers: [syslog/udp, syslog/tcp]
+      processors: [batch]
+      exporters: [splunk_hec, debug]

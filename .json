@@ -1,0 +1,24 @@
+{
+  "image": "11notes/opentelemetry-collector",
+  "name": "opentelemetry-collector",
+  "root": "/opentelemetry-collector",
+  "semver": {
+    "version": "0.158.0"
+  },
+  "readme": {
+    "description": "Run opentelemetry-collector rootless and distroless.",
+    "introduction": "The OpenTelemetry Collector offers a vendor-agnostic implementation on how to receive, process and export telemetry data. In addition, it removes the need to run, operate and maintain multiple agents/collectors in order to support open-source telemetry data formats (e.g. Jaeger, Prometheus, etc.) to multiple open-source or commercial back-ends.",
+    "built": {
+      "opentelemetry-collector": "https://github.com/open-telemetry/opentelemetry-collector"
+    },
+    "distroless": {
+      "layers": [
+        "11notes/distroless",
+        "11notes/distroless:localhealth"
+      ]
+    },
+    "comparison": {
+      "image": "otel/opentelemetry-collector"
+    }
+  }
+}
