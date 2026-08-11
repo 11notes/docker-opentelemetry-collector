@@ -1,4 +1,4 @@
-${{ content_synopsis }} This image will run opentelemetry-collector [rootless](https://github.com/11notes/RTFM/blob/main/linux/container/image/rootless.md) and [distroless](https://github.com/11notes/RTFM/blob/main/linux/container/image/distroless.md), for maximum security and performance.
+${{ content_synopsis }} This image will run opentelemetry-collector [rootless](https://github.com/11notes/RTFM/blob/main/linux/container/image/rootless.md) and [distroless](https://github.com/11notes/RTFM/blob/main/linux/container/image/distroless.md), for maximum security and performance. The image comes in different flavours, check the [configs](https://github.com/11notes/docker-opentelemetry-collector/tree/master/build/opentelemetry-collector) to see what's compiled.
 
 ${{ content_uvp }} Good question! Because ...
 
