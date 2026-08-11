@@ -9,7 +9,7 @@ x-lockdown: &lockdown
 
 services:
   opentelemetry-collector:
-    image: "11notes/opentelemetry-collector:0.158.0-hec"
+    image: "11notes/opentelemetry-collector:0.158.0"
     <<: *lockdown
     environment:
       TZ: "Europe/Zurich"
