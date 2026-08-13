@@ -11,7 +11,7 @@ const APP_CONFIG_SOURCE string = "/opentelemetry-collector/.source/APP_OTEL_BUIL
 
 func main(){
 	// copy source config
-	eleven.Util.CopyFile(APP_CONFIG_SOURCE, APP_CONFIG_FILE)
+	eleven.Container.CopyMissingSourceFiles(APP_CONFIG_SOURCE, APP_CONFIG_FILE)
 
 	// write env to file if set
 	eleven.Container.EnvToFile(APP_CONFIG_ENV, APP_CONFIG_FILE)
