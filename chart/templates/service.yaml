@@ -12,12 +12,12 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: opentelemetry-collector-syslog-tcp
+      targetPort: syslog-tcp
       protocol: TCP
-      name: opentelemetry-collector-syslog-tcp
+      name: syslog-tcp
     - port: {{ .Values.service.port }}
-      targetPort: opentelemetry-collector-syslog-udp
+      targetPort: syslog-udp
       protocol: UDP
-      name: opentelemetry-collector-syslog-udp
+      name: syslog-udp
   selector:
     {{- include (printf "%s.selectorLabels" .Chart.Name) . | nindent 4 }}

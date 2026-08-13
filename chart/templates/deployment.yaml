@@ -51,10 +51,10 @@ spec:
             {{- toYaml . | nindent 12 }}
             {{- end }}
           ports:
-            - name: otel-collector-syslog-tcp
+            - name: syslog-tcp
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-            - name: otel-collector-syslog-udp
+            - name: syslog-udp
               containerPort: {{ .Values.service.port }}
               protocol: UDP
           {{- with .Values.startupProbe }}
