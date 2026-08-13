@@ -1,0 +1,62 @@
+image:
+  repository: 11notes/opentelemetry-collector
+  tag: "0.158.0"
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+nameOverride: ""
+fullnameOverride: ""
+timezone: "Europe/Zurich"
+
+extraEnv: []
+
+service:
+  type: ClusterIP
+  port: 5140
+  annotations: {}
+
+podSecurityContext:
+  fsGroup: 1000
+  fsGroupChangePolicy: "OnRootMismatch"
+
+containerSecurityContext:
+  runAsUser: 1000
+  runAsGroup: 1000
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+
+resources: {}
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+podAnnotations: {}
+podLabels: {}
+
+persistence:
+  etc:
+    enabled: true
+    existingClaim: ""
+    storageClass: ""
+    accessModes:
+      - ReadWriteOnce
+    size: 4Mi
+
+readinessProbe:
+  exec:
+    command:
+      - localhealth
+      - http://127.0.0.1:13133/
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+
+livenessProbe:
+  exec:
+    command:
+      - localhealth
+      - http://127.0.0.1:13133/
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6

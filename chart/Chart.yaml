@@ -1,0 +1,12 @@
+apiVersion: v2
+name: opentelemetry-collector
+description: run opentelemetry-collector rootless and distroless on k8s
+type: application
+version: 0.0.1
+home: https://github.com/11notes/docker-opentelemetry-collector
+sources:
+  - https://github.com/11notes/docker-opentelemetry-collector
+keywords:
+  - opentelemetry
+maintainers:
+  - name: 11notes
