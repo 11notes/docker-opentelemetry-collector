@@ -3,7 +3,7 @@
   "name": "opentelemetry-collector",
   "root": "/opentelemetry-collector",
   "semver": {
-    "version": "0.158.0"
+    "version": "0.159.0"
   },
   "readme": {
     "description": "run opentelemetry-collector rootless and distroless.",
