@@ -28,6 +28,10 @@ resource "kubernetes_namespace_v1" "opentelemetry_collector" {
   }
 }
 
+variable "ingress_ip" {
+  type = string
+}
+
 variable "hec_url" {
   type = string
 }
@@ -50,6 +54,36 @@ resource "kubernetes_secret_v1" "hec_token" {
   type = "Opaque"
 }
 
+resource "kubernetes_service_v1" "opentelemetry_collector_service" {
+  metadata {
+    name = "opentelemetry-collector-service"
+    namespace = "opentelemetry-collector"
+    annotations = {
+      "metallb.io/loadBalancerIPs" = trimspace(var.ingress_ip)
+      "metallb.io/allow-shared-ip" = "default"
+    }
+  }
+  spec {
+    type = "LoadBalancer"
+    external_traffic_policy = "Local"
+    selector = {
+      "app.kubernetes.io/instance" = "opentelemetry-collector"
+      "app.kubernetes.io/name" = "opentelemetry-collector"
+    }
+    port {
+      name = "syslog-tcp"
+      protocol = "TCP"
+      port = 5141
+      target_port = 5140
+    }
+    port {
+      name = "syslog-udp"
+      protocol = "UDP"
+      port = 5141
+      target_port = 5140
+    }
+  }
+}
 
 resource "helm_release" "opentelemetry_collector" {
   name = "opentelemetry-collector"
