@@ -20,5 +20,7 @@
     "comparison": {
       "image": "otel/opentelemetry-collector"
     }
-  }
+  },
+  "unraid": true,
+  "nobody": true
 }
